@@ -4,9 +4,9 @@
 //
 // And return its head
 
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
 }
 
 var removeNthFromEnd = function (head, n) {
@@ -30,6 +30,32 @@ var removeNthFromEnd = function (head, n) {
   on.next = on.next.next;
   return head;
 };
+
+// create list nodes
+
+let node1 = new ListNode(1);
+let node2 = new ListNode(2);
+let node3 = new ListNode(3);
+let node4 = new ListNode(4);
+let node5 = new ListNode(5);
+
+// assign head
+
+let head = node1;
+
+// connect linked list
+
+node1.next = node2;
+node2.next = node3;
+node3.next = node4;
+node4.next = node5;
+node5.next = null;
+
+console.log({ head }); // { head: ListNode { val: 1, next: ListNode { val: 2, next: [Object] } } }
+
+removeNthFromEnd(head, (n = 4));
+
+console.log({ head }); // { head: ListNode { val: 1, next: ListNode { val: 3, next: [Object] } } }
 
 // O(n) - linear time
 // O(1) - constant space
